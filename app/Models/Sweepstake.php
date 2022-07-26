@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sweepstake extends Model
 {
-    use HasFactory, HasUUID;
+    use HasUUID;
 
     protected $fillable = [
         "user_id",
