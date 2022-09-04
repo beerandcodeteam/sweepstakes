@@ -7,10 +7,10 @@
             <h1 class="text-lg font-medium leading-6 text-gray-900 sm:truncate">Criar Sorteio</h1>
         </div>
         <div class="mt-4 flex sm:mt-0 sm:ml-4">
-            <button type="button"
+            <a href="{{ route("sweepstakes.show", $sweepstake->id) }}"
                     class="order-0 inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:order-1 sm:ml-3">
                 Voltar
-            </button>
+            </a>
         </div>
     </div>
     <div class="md:grid md:grid-cols-3 md:gap-6">
