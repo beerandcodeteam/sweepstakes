@@ -12,9 +12,14 @@ class Sweepstake extends Model
 
     protected $fillable = [
         "user_id",
+        "title",
         "number_of_winners",
         "end_date",
         "description"
+    ];
+
+    protected $dates = [
+        'end_date'
     ];
 
     protected $keyType = "string";

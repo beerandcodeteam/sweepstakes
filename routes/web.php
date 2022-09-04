@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use \App\Http\Controllers\SweepstakesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,22 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('sweepstakes.index');
-})->middleware('auth');
-
-Route::get('/show', function () {
-    return view('sweepstakes.show');
-})->middleware('auth');
-
-Route::get('/create', function () {
-    return view('sweepstakes.create');
-})->middleware('auth');
-
-Route::get('/edit', function () {
-    return view('sweepstakes.edit');
-})->middleware('auth');
-
-Route::get('/register', function () {
-    return view('sweepstakes.register');
-})->middleware('auth');
+Route::resource('', SweepstakesController::class)
+    ->names('sweepstakes')
+    ->parameters([
+        '' => 'sweepstake'
+    ]);
