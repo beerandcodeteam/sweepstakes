@@ -17,7 +17,6 @@ class Participant extends Model
         "awarded_at"
     ];
 
-    protected $dateFormat = "d/m/Y";
 
     public function sweepstake() {
         return $this->belongsTo(Sweepstake::class);
