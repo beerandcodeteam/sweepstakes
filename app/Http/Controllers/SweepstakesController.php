@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SweepstakesParticipantStoreRequest;
 use App\Http\Requests\SweepstakesStoreRequest;
 use App\Http\Requests\SweepstakesUpdateRequest;
 use App\Models\Sweepstake;
@@ -101,12 +102,8 @@ class SweepstakesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(SweepstakesUpdateRequest $request, $id)
+    public function update(SweepstakesUpdateRequest $request, Sweepstake $sweepstake)
     {
-        $sweepstake = Sweepstake::where("id", $id)
-            ->where('user_id', Auth::user()->id)
-            ->first();
-
         $sweepstake->update($request->all());
 
         return redirect()->route('sweepstakes.show', $sweepstake->id);
@@ -129,6 +126,17 @@ class SweepstakesController extends Controller
         }
 
         return redirect()->route('sweepstakes.index');
+    }
+
+    public function register(Sweepstake $sweepstake) {
+        return response()->view('sweepstakes.register', ['sweepstake' => $sweepstake]);
+    }
+
+    public function storeParticipant(SweepstakesParticipantStoreRequest $request, Sweepstake $sweepstake) {
+        $sweepstake->participants()->create($request->all());
+
+        return redirect()->back()
+            ->with('success', 'Sua participação foi cadastrada com sucesso');
     }
 
 }

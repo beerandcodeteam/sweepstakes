@@ -14,7 +14,11 @@ use \App\Http\Controllers\SweepstakesController;
 */
 
 Route::resource('', SweepstakesController::class)
+    ->middleware('auth')
     ->names('sweepstakes')
     ->parameters([
         '' => 'sweepstake'
     ]);
+
+Route::get('register/{sweepstake}', [SweepstakesController::class, 'register'])->name('sweepstake.register');
+Route::post('register/{sweepstake}', [SweepstakesController::class, 'storeParticipant'])->name('sweepstake.storeParticipant');

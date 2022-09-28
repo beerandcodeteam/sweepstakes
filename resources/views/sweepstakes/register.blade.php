@@ -13,6 +13,16 @@
 
         <div
             class="flex flex-col mx-auto mt-14 max-w-2xl sm:mt-16 lg:col-span-3 lg:row-span-2 lg:row-end-2 lg:mt-16 lg:max-w-2xl">
+
+                @if(session('success'))
+                    <div class="p-2 flex flex-row items-center bg-green-100 rounded-lg border border-green-300 gap-x-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-green-400">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span class="text text-sm">Teste de sucesso!</span>
+                    </div>
+               @endif
+
             <div class="flex flex-col-reverse">
                 <div class="mt-4">
                     <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
@@ -31,7 +41,7 @@
                 {{ $sweepstake->description }}
             </p>
 
-            <form action="{{ route("sweepstakes.register", $sweepstake->id) }}"
+            <form action="{{ route("sweepstake.storeParticipant", $sweepstake->id) }}"
                   class="mt-10 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2" method="POST">
                 @csrf
                 <div class="col-span-6">
@@ -45,7 +55,7 @@
                            shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                     >
                     @error('name')
-                    <span class="text-xs text-red-300">{{ $message }}</span>
+                        <span class="text-xs text-red-300">{{ $message }}</span>
                     @enderror
                 </div>
 

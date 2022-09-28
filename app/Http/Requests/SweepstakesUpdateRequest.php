@@ -13,7 +13,7 @@ class SweepstakesUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return $this->sweepstake->user_id === $this->user()->id;
     }
 
     /**
